@@ -17,7 +17,13 @@ namespace EmployeesTests
             mockContext.Setup(x => x.Employees).Returns(mockSet.Object);
 
             var service = new EmployeeService(mockContext.Object);
-            service.AddUser("Jan", "Nowak", 23);
+            var employee = new Employee()
+            {
+                Name = "Jan",
+                Surname = "Nowak",
+                Age = 23
+            };
+            service.AddUser(employee);
 
             mockSet.Verify(x => x.Add(It.IsAny<Employee>()), Times.Once());
             mockContext.Verify(x => x.SaveChanges(), Times.Once());

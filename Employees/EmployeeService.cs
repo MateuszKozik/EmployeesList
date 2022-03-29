@@ -4,21 +4,16 @@ namespace Employees
 {
     public class EmployeeService
     {
-        private EmployeeContext _context;
+        private readonly EmployeeContext _context;
 
         public EmployeeService(EmployeeContext context)
         {
             _context = context;
         }
 
-        public void AddUser(string name, string surname, int age)
+        public void AddUser(Employee employee)
         {
-            _context.Employees.Add(
-                new Employee {
-                    Name = name, 
-                    Surname = surname,
-                    Age = age 
-                });
+            _context.Employees.Add(employee);
 
             _context.SaveChanges();
         }
