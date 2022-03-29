@@ -27,5 +27,10 @@ namespace Employees
         {
             employees.ForEach(employee => { AddUser(employee); });        
         }
+
+        public List<Employee> GetAllUsers()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

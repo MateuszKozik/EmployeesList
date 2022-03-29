@@ -77,5 +77,30 @@ namespace EmployeesTests
             mockSet.Verify(x => x.Add(It.IsAny<Employee>()), Times.Exactly(3));
             mockContext.Verify(x => x.SaveChanges(), Times.Exactly(3));
         }
+
+        [TestMethod]
+        public void TestGetUsers()
+        {
+            var data = new List<Employee> {
+                new Employee(){ Name = "Jan",Surname = "Nowak", Age = 23 },
+                new Employee(){ Name = "Tadeusz",Surname = "Kowalski", Age = 17 },
+                new Employee(){ Name = "Zbigniew",Surname = "Kolano", Age = 21 }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Employee>>();
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<EmployeeContext>();
+            mockContext.Setup(c => c.Employees).Returns(mockSet.Object);
+
+            var service = new EmployeeService(mockContext.Object);
+            var employees = service.GetAllUsers();
+
+            Assert.AreEqual(3, employees.Count);
+        }
+
     }
 }
