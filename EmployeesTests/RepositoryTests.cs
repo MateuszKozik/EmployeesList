@@ -42,7 +42,7 @@ namespace EmployeesTests
             {
                 Name = "Jan",
                 Surname = "Nowak",
-                Age = 23
+                Age = 14
             };
             try
             {

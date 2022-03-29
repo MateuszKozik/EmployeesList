@@ -13,6 +13,10 @@ namespace Employees
 
         public void AddUser(Employee employee)
         {
+            if(employee.Age < 15)
+            {
+                throw new ArgumentOutOfRangeException("Too young.");
+            }
             _context.Employees.Add(employee);
 
             _context.SaveChanges();
