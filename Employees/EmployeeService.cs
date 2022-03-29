@@ -25,10 +25,7 @@ namespace Employees
 
         public void AddUserRange(List<Employee> employees)
         {
-            for(int i = 0; i < employees.Count; i++)
-            {
-                AddUser(employees[i]);
-            }
+            employees.ForEach(employee => { AddUser(employee); });        
         }
     }
 }
