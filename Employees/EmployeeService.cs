@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Employees
 {
@@ -20,6 +21,11 @@ namespace Employees
             _context.Employees.Add(employee);
 
             _context.SaveChanges();
+        }
+
+        public void AddUserRange(List<Employee> employees)
+        {
+            throw new NotImplementedException();
         }
     }
 }
