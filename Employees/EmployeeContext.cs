@@ -4,7 +4,6 @@ namespace Employees
 {
     public class EmployeeContext : DbContext
     {
-        public object Employees;
+        public virtual DbSet<Employee> Employees { get; set; }
     }
-
 }

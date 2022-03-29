@@ -4,16 +4,23 @@ namespace Employees
 {
     public class EmployeeService
     {
-        private EmployeeContext @object;
+        private EmployeeContext _context;
 
-        public EmployeeService(EmployeeContext @object)
+        public EmployeeService(EmployeeContext context)
         {
-            this.@object = @object;
+            _context = context;
         }
 
-        public void AddUser(string v1, string v2, int v3)
+        public void AddUser(string name, string surname, int age)
         {
-            throw new NotImplementedException();
+            _context.Employees.Add(
+                new Employee {
+                    Name = name, 
+                    Surname = surname,
+                    Age = age 
+                });
+
+            _context.SaveChanges();
         }
     }
 }
