@@ -25,7 +25,10 @@ namespace Employees
 
         public void AddUserRange(List<Employee> employees)
         {
-            throw new NotImplementedException();
+            for(int i = 0; i < employees.Count; i++)
+            {
+                AddUser(employees[i]);
+            }
         }
     }
 }
