@@ -28,5 +28,31 @@ namespace EmployeesTests
             mockSet.Verify(x => x.Add(It.IsAny<Employee>()), Times.Once());
             mockContext.Verify(x => x.SaveChanges(), Times.Once());
         }
+
+        [TestMethod]
+        public void TestUserAge()
+        {
+            var mockSet = new Mock<DbSet<Employee>>();
+
+            var mockContext = new Mock<EmployeeContext>();
+            mockContext.Setup(x => x.Employees).Returns(mockSet.Object);
+
+            var service = new EmployeeService(mockContext.Object);
+            var employee = new Employee()
+            {
+                Name = "Jan",
+                Surname = "Nowak",
+                Age = 23
+            };
+            try
+            {
+                service.AddUser(employee);
+            }
+            catch (System.ArgumentOutOfRangeException)
+            {
+                return;
+            }
+            Assert.Fail();
+        }
     }
 }
