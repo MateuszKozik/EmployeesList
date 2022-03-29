@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Employees
 {
@@ -30,7 +31,9 @@ namespace Employees
 
         public List<Employee> GetAllUsers()
         {
-            throw new NotImplementedException();
+            var employees = _context.Employees.ToList();
+                        
+            return employees;
         }
     }
 }
