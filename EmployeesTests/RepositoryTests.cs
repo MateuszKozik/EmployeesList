@@ -167,5 +167,16 @@ namespace EmployeesTests
             Assert.IsFalse(isCapitalized);
         }
 
+        [TestMethod]
+        public void TestCapitalizeMethod()
+        {
+            var mockContext = new Mock<EmployeeContext>();
+            var service = new EmployeeService(mockContext.Object);
+
+            var test = "testString";
+            var capitalized = service.Capitalize(test);
+
+            Assert.AreEqual("TESTSTRING", capitalized);
+        }
     }
 }

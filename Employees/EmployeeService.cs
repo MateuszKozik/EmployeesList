@@ -49,5 +49,10 @@ namespace Employees
             }
             return true;
         }
+
+        public object Capitalize(string data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
