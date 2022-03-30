@@ -31,11 +31,10 @@ namespace Employees
 
         public List<Employee> GetAllUsers()
         {
-            var employees = _context.Employees.ToList();
+            var employees = _context.Employees.OrderBy(x => x.Surname).ToList();
             if (employees.Count == 0)
                 throw new InvalidOperationException("Sequence contains no elements");
 
-            employees = employees.OrderBy(x => x.Surname).ToList();
             return employees;
         }
     }
