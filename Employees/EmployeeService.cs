@@ -37,5 +37,10 @@ namespace Employees
 
             return employees;
         }
+
+        public bool IsCapitalized(string data)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

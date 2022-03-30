@@ -155,5 +155,17 @@ namespace EmployeesTests
             Assert.AreEqual("Nowak", employees[2].Surname);
         }
 
+        [TestMethod]
+        public void TestStringIsCapitalize()
+        {
+            var mockContext = new Mock<EmployeeContext>();
+            var service = new EmployeeService(mockContext.Object);
+
+            var test = "testString";
+            var isCapitalized = service.IsCapitalized(test);
+
+            Assert.IsTrue(isCapitalized);
+        }
+
     }
 }
