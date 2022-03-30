@@ -32,7 +32,9 @@ namespace Employees
         public List<Employee> GetAllUsers()
         {
             var employees = _context.Employees.ToList();
-                        
+            if (employees.Count == 0)
+                throw new InvalidOperationException("Sequence contains no elements");
+
             return employees;
         }
     }
