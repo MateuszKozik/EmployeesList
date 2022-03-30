@@ -53,14 +53,14 @@ namespace Employees
 
         public string Capitalize(string data)
         {
-            var final = "";
+            var final = new StringBuilder();
 
             foreach (var letter in data.ToCharArray())
             {
-                final += Char.ToUpper(letter);
+                final.Append(Char.ToUpper(letter));
             }
 
-            return final;
+            return final.ToString();
         }
     }
 }
