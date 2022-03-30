@@ -40,7 +40,16 @@ namespace Employees
 
         public bool IsCapitalized(string data)
         {
-            throw new NotImplementedException();
+            var isUpper = true;
+            var letters = data.ToCharArray();
+            foreach (var letter in letters)
+            {
+                if (!Char.IsUpper(letter))
+                {
+                    isUpper = false;
+                }
+            }
+            return isUpper;
         }
     }
 }

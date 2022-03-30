@@ -164,7 +164,7 @@ namespace EmployeesTests
             var test = "testString";
             var isCapitalized = service.IsCapitalized(test);
 
-            Assert.IsTrue(isCapitalized);
+            Assert.IsFalse(isCapitalized);
         }
 
     }
