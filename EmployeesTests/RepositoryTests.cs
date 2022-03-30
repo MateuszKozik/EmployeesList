@@ -178,5 +178,36 @@ namespace EmployeesTests
 
             Assert.AreEqual("TESTSTRING", capitalized);
         }
+
+        [TestMethod]
+        public void TestNamesAreCapitalized()
+        {
+            var data = new List<Employee> {
+                new Employee(){ Name = "Jan",Surname = "Nowak", Age = 23 },
+                new Employee(){ Name = "Tadeusz",Surname = "Kowalski", Age = 17 },
+                new Employee(){ Name = "Zbigniew",Surname = "Kolano", Age = 21 }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Employee>>();
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+
+            var mockContext = new Mock<EmployeeContext>();
+            mockContext.Setup(c => c.Employees).Returns(mockSet.Object);
+
+            var service = new EmployeeService(mockContext.Object);
+            var employees = service.GetAllUsers();
+
+            Assert.AreEqual("ZBIGNIEW", employees[0].Name);
+            Assert.AreEqual("TADEUSZ", employees[1].Name);
+            Assert.AreEqual("JAN", employees[2].Name);
+
+            Assert.AreEqual("KOLANO", employees[0].Surname);
+            Assert.AreEqual("KOWALSKI", employees[1].Surname);
+            Assert.AreEqual("NOWAK", employees[2].Surname);
+        }
     }
 }

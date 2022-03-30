@@ -36,6 +36,15 @@ namespace Employees
             if (employees.Count == 0)
                 throw new InvalidOperationException("Sequence contains no elements");
 
+            employees.ForEach(employee =>
+            {
+                if (!IsCapitalized(employee.Name))
+                   employee.Name = Capitalize(employee.Name);
+
+                if (!IsCapitalized(employee.Surname))
+                    employee.Surname = Capitalize(employee.Surname);
+            });
+
             return employees;
         }
 
