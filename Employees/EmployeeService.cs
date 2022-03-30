@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Employees
 {
@@ -50,9 +51,16 @@ namespace Employees
             return true;
         }
 
-        public object Capitalize(string data)
+        public string Capitalize(string data)
         {
-            throw new NotImplementedException();
+            var final = "";
+
+            foreach (var letter in data.ToCharArray())
+            {
+                final += Char.ToUpper(letter);
+            }
+
+            return final;
         }
     }
 }
