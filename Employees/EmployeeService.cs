@@ -35,6 +35,7 @@ namespace Employees
             if (employees.Count == 0)
                 throw new InvalidOperationException("Sequence contains no elements");
 
+            employees = employees.OrderBy(x => x.Surname).ToList();
             return employees;
         }
     }
