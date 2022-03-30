@@ -150,9 +150,9 @@ namespace EmployeesTests
             var service = new EmployeeService(mockContext.Object);
             var employees = service.GetAllUsers();
 
-            Assert.AreEqual("Kolano", employees[0].Surname);
-            Assert.AreEqual("Kowalski", employees[1].Surname);
-            Assert.AreEqual("Nowak", employees[2].Surname);
+            Assert.AreEqual("KOLANO", employees[0].Surname);
+            Assert.AreEqual("KOWALSKI", employees[1].Surname);
+            Assert.AreEqual("NOWAK", employees[2].Surname);
         }
 
         [TestMethod]
