@@ -101,7 +101,16 @@ namespace Employees
 
         public bool DeleteUser(Employee employee)
         {
-            throw new NotImplementedException();
+            try
+            {
+                _context.Employees.Remove(employee);
+                _context.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
         }
     }
 }
