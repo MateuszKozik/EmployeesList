@@ -71,5 +71,10 @@ namespace Employees
 
             return final.ToString();
         }
+
+        public bool CheckAgeIsLargerThan(int age, Employee employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

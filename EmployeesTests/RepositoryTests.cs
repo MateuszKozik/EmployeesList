@@ -209,5 +209,25 @@ namespace EmployeesTests
             Assert.AreEqual("KOWALSKI", employees[1].Surname);
             Assert.AreEqual("NOWAK", employees[2].Surname);
         }
+
+        [TestMethod]
+        public void CheckUserAge()
+        {
+            var mockContext = new Mock<EmployeeContext>();
+            var service = new EmployeeService(mockContext.Object);
+
+            Employee employee = new()
+            {
+                Name = "Jan",
+                Surname = "Nowak",
+                Age = 19
+            };
+
+            var ageIsValid = service.CheckAgeIsLargerThan(18, employee);
+            Assert.IsTrue(ageIsValid);
+        }
+
+        // aktualizacja pracownika
+        // usuwnaie pracownika
     }
 }
