@@ -98,5 +98,10 @@ namespace Employees
             _context.SaveChanges();
             return employee;
         }
+
+        public bool DeleteUser(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

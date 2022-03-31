@@ -296,6 +296,22 @@ namespace EmployeesTests
             mockContext.Verify(x => x.SaveChanges(), Times.Once());
         }
 
-        // usuwnaie pracownika
+
+        [TestMethod]
+        public void TestDeleteUser()
+        {
+            var mockSet = new Mock<DbSet<Employee>>();
+
+            var mockContext = new Mock<EmployeeContext>();
+            mockContext.Setup(x => x.Employees).Returns(mockSet.Object);
+
+            var service = new EmployeeService(mockContext.Object);
+
+            var employee = new Employee() { Name = "Jan", Surname = "Nowak", Age = 23 };
+
+            bool success = service.DeleteUser(employee);
+
+            Assert.IsTrue(success);
+        }
     }
 }
