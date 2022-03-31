@@ -93,7 +93,10 @@ namespace Employees
 
         public Employee UpdateUser(Employee employee)
         {
-            throw new NotImplementedException();
+            _context.Employees.Update(employee);
+
+            _context.SaveChanges();
+            return employee;
         }
     }
 }

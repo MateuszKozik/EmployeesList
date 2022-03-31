@@ -289,7 +289,6 @@ namespace EmployeesTests
             var service = new EmployeeService(mockContext.Object);
 
             var employee = new Employee() { Name = "Jan", Surname = "Nowak", Age = 23 };
-            var updatedEmployee = new Employee() { Name = "Jan", Surname = "Nowak", Age = 24 };
 
             employee = service.UpdateUser(employee);
 
