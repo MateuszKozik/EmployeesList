@@ -277,7 +277,26 @@ namespace EmployeesTests
             Assert.AreEqual("ZBIGNIEW", employees[0].Name);
             Assert.AreEqual("JAN", employees[1].Name);
         }
-        // aktualizacja pracownika
+
+        [TestMethod]
+        public void TestUpdateUser()
+        {
+            var mockSet = new Mock<DbSet<Employee>>();
+
+            var mockContext = new Mock<EmployeeContext>();
+            mockContext.Setup(x => x.Employees).Returns(mockSet.Object);
+
+            var service = new EmployeeService(mockContext.Object);
+
+            var employee = new Employee() { Name = "Jan", Surname = "Nowak", Age = 23 };
+            var updatedEmployee = new Employee() { Name = "Jan", Surname = "Nowak", Age = 24 };
+
+            employee = service.UpdateUser(employee);
+
+            mockSet.Verify(x => x.Update(It.IsAny<Employee>()), Times.Once());
+            mockContext.Verify(x => x.SaveChanges(), Times.Once());
+        }
+
         // usuwnaie pracownika
     }
 }

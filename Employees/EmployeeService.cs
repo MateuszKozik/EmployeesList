@@ -90,5 +90,10 @@ namespace Employees
 
             return finalList;
         }
+
+        public Employee UpdateUser(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
