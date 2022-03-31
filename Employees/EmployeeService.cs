@@ -78,5 +78,10 @@ namespace Employees
                 return true;
             return false;
         }
+
+        public List<Employee> CheckMultipleUserAge(int age, List<Employee> employees)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

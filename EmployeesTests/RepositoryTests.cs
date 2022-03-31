@@ -227,6 +227,30 @@ namespace EmployeesTests
             Assert.IsTrue(ageIsValid);
         }
 
+        [TestMethod]
+        public void CheckMultipleUserAge()
+        {
+            var data = new List<Employee> {
+                new Employee(){ Name = "Jan",Surname = "Nowak", Age = 23 },
+                new Employee(){ Name = "Tadeusz",Surname = "Kowalski", Age = 17 },
+                new Employee(){ Name = "Zbigniew",Surname = "Kolano", Age = 21 }
+            };
+
+            var mockContext = new Mock<EmployeeContext>();
+            var service = new EmployeeService(mockContext.Object);
+
+            Employee employee = new()
+            {
+                Name = "Jan",
+                Surname = "Nowak",
+                Age = 19
+            };
+
+            var employees = service.CheckMultipleUserAge(18, data);
+
+            Assert.AreEqual(2, employees.Count);
+        }
+
         // aktualizacja pracownika
         // usuwnaie pracownika
     }
