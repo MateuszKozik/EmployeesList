@@ -81,7 +81,14 @@ namespace Employees
 
         public List<Employee> CheckMultipleUserAge(int age, List<Employee> employees)
         {
-            throw new NotImplementedException();
+            List<Employee> finalList = new List<Employee>();
+            employees.ForEach((employee) =>
+            {
+                if (CheckAgeIsLargerThan(age, employee))
+                    finalList.Add(employee);
+            });
+
+            return finalList;
         }
     }
 }
