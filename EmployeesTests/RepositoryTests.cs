@@ -251,6 +251,32 @@ namespace EmployeesTests
             Assert.AreEqual(2, employees.Count);
         }
 
+        [TestMethod]
+        public void GetFinalUserList()
+        {
+            var data = new List<Employee> {
+                new Employee(){ Name = "Jan",Surname = "Nowak", Age = 23 },
+                new Employee(){ Name = "Tadeusz",Surname = "Kowalski", Age = 17 },
+                new Employee(){ Name = "Zbigniew",Surname = "Kolano", Age = 21 }
+            }.AsQueryable();
+
+            var mockSet = new Mock<DbSet<Employee>>();
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.Provider).Returns(data.Provider);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.Expression).Returns(data.Expression);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.ElementType).Returns(data.ElementType);
+            mockSet.As<IQueryable<Employee>>().Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
+
+            var mockContext = new Mock<EmployeeContext>();
+            mockContext.Setup(c => c.Employees).Returns(mockSet.Object);
+
+            var service = new EmployeeService(mockContext.Object);
+            var employees = service.GetAllUsers();
+            employees = service.CheckMultipleUserAge(18, employees);
+
+            Assert.AreEqual(2, employees.Count);
+            Assert.AreEqual("ZBIGNIEW", employees[0].Name);
+            Assert.AreEqual("JAN", employees[1].Name);
+        }
         // aktualizacja pracownika
         // usuwnaie pracownika
     }
